@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Management</title>
+</head>
+<body>
+<div th:replace="~{Layout/Admin :: layout}">
+
+</div>
+<div class="container-fluid ">
+    <div class="background_tm">
+        <div class="d-flex justify-content-between align-items-center mb-2 mb-lg-0">
+            <button class="btn btn-primary m-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                <i class="bi bi-list-ul"></i>
+            </button>
+            <div class="date_time">
+                <div class="date_start">
+                    <input type="text" id="datepicker_start" class="form-control">
+                </div>
+                <div>
+                    <h3><i class="bi bi-arrow-right"></i></h3>
+                </div>
+                <div class="date_end">
+                    <input type="text" id="datepicker_end" class="form-control">
+                </div>
+                <div>
+                    <button class="btn btn-success" type="submit">Accept</button>
+                </div>
+
+            </div>
+            <form class="d-flex m-3" role="search">
+                <input class="form-control me-2 search-input" type="search" placeholder="OrderID, Product Name, or Customer"
+                       aria-label="Search">
+                <button class="btn btn-warning" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="body_content container">
+            <div class="row">
+                <div class="mb-4 mb-lg-0">
+                    <div class="card">
+                        <h5 class="card-header bg-success-subtle"><i class="bi bi-phone"></i> Product Management
+                        </h5>
+                        <div class="card-body">
+                            <div class="table-responsive text-center">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">OrderID</th>
+                                        <th scope="col">Customer</th>
+                                        <th scope="col">Quantity product</th>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>1001</td>
+                                        <td>John Doe</td>
+                                        <td>3</td>
+                                        <td>$150.00</td>
+                                        <td>2024-09-01</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1002</td>
+                                        <td>Jane Smith</td>
+                                        <td>1</td>
+                                        <td>$75.00</td>
+                                        <td>2024-09-02</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1003</td>
+                                        <td>Michael Brown</td>
+                                        <td>5</td>
+                                        <td>$375.00</td>
+                                        <td>2024-09-03</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1004</td>
+                                        <td>Emily Davis</td>
+                                        <td>2</td>
+                                        <td>$120.00</td>
+                                        <td>2024-09-04</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1005</td>
+                                        <td>David Wilson</td>
+                                        <td>1</td>
+                                        <td>$50.00</td>
+                                        <td>2024-09-05</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1006</td>
+                                        <td>Sarah Johnson</td>
+                                        <td>4</td>
+                                        <td>$200.00</td>
+                                        <td>2024-09-06</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1007</td>
+                                        <td>Chris Lee</td>
+                                        <td>2</td>
+                                        <td>$90.00</td>
+                                        <td>2024-09-07</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1008</td>
+                                        <td>Jessica Taylor</td>
+                                        <td>3</td>
+                                        <td>$180.00</td>
+                                        <td>2024-09-08</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1009</td>
+                                        <td>William Anderson</td>
+                                        <td>1</td>
+                                        <td>$70.00</td>
+                                        <td>2024-09-09</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1010</td>
+                                        <td>Amy Thomas</td>
+                                        <td>5</td>
+                                        <td>$400.00</td>
+                                        <td>2024-09-10</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1011</td>
+                                        <td>Kevin Martinez</td>
+                                        <td>2</td>
+                                        <td>$130.00</td>
+                                        <td>2024-09-11</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1012</td>
+                                        <td>Olivia Garcia</td>
+                                        <td>3</td>
+                                        <td>$160.00</td>
+                                        <td>2024-09-12</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1013</td>
+                                        <td>James Harris</td>
+                                        <td>1</td>
+                                        <td>$80.00</td>
+                                        <td>2024-09-13</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1014</td>
+                                        <td>Isabella Clark</td>
+                                        <td>4</td>
+                                        <td>$300.00</td>
+                                        <td>2024-09-14</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1015</td>
+                                        <td>Matthew Rodriguez</td>
+                                        <td>2</td>
+                                        <td>$110.00</td>
+                                        <td>2024-09-15</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1016</td>
+                                        <td>Charlotte Lewis</td>
+                                        <td>3</td>
+                                        <td>$210.00</td>
+                                        <td>2024-09-16</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1017</td>
+                                        <td>Alexander Walker</td>
+                                        <td>1</td>
+                                        <td>$55.00</td>
+                                        <td>2024-09-17</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1018</td>
+                                        <td>Sofia Hall</td>
+                                        <td>2</td>
+                                        <td>$120.00</td>
+                                        <td>2024-09-18</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1019</td>
+                                        <td>Daniel Young</td>
+                                        <td>5</td>
+                                        <td>$450.00</td>
+                                        <td>2024-09-19</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1020</td>
+                                        <td>Grace King</td>
+                                        <td>2</td>
+                                        <td>$140.00</td>
+                                        <td>2024-09-20</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1021</td>
+                                        <td>Jacob Wright</td>
+                                        <td>3</td>
+                                        <td>$200.00</td>
+                                        <td>2024-09-21</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1022</td>
+                                        <td>Ella Scott</td>
+                                        <td>1</td>
+                                        <td>$60.00</td>
+                                        <td>2024-09-22</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1023</td>
+                                        <td>Michael Green</td>
+                                        <td>2</td>
+                                        <td>$130.00</td>
+                                        <td>2024-09-23</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1024</td>
+                                        <td>Chloe Adams</td>
+                                        <td>4</td>
+                                        <td>$300.00</td>
+                                        <td>2024-09-24</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1025</td>
+                                        <td>Benjamin Baker</td>
+                                        <td>1</td>
+                                        <td>$70.00</td>
+                                        <td>2024-09-25</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1026</td>
+                                        <td>Madison Nelson</td>
+                                        <td>3</td>
+                                        <td>$200.00</td>
+                                        <td>2024-09-26</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1027</td>
+                                        <td>Jack Carter</td>
+                                        <td>2</td>
+                                        <td>$100.00</td>
+                                        <td>2024-09-27</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1028</td>
+                                        <td>Hannah Mitchell</td>
+                                        <td>5</td>
+                                        <td>$450.00</td>
+                                        <td>2024-09-28</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1029</td>
+                                        <td>David Perez</td>
+                                        <td>1</td>
+                                        <td>$50.00</td>
+                                        <td>2024-09-29</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1030</td>
+                                        <td>Emma Roberts</td>
+                                        <td>3</td>
+                                        <td>$180.00</td>
+                                        <td>2024-09-30</td>
+                                        <td><button class="btn btn-info">View</button></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
