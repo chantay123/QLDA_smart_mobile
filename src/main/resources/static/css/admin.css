@@ -1,0 +1,89 @@
+/* The navigation menu links */
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #120fce;
+    display: block;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: orange;
+    background-color: #ccff00;
+}
+
+.sidenav a:active {
+    color: #ff0000;
+    background-color: #ccff00;
+    font-weight: bold;
+}
+
+.sidenav a:focus {
+    color: #ff0000;
+    background-color: #ccff00;
+    font-weight: bold;
+}
+
+.ava {
+    color: #120fce;
+    font-size: 25px;
+}
+
+.img_ava {
+    width: 75px;
+    height: 75px;
+}
+
+.background_um {
+    background-color: rgba(84, 255, 159, 0.4); /* Màu cam trong suốt */
+    width: 100%;
+    padding-bottom: 30px;
+    min-height: 60rem;
+}
+
+.background_pm {
+    background: linear-gradient(
+            to bottom,
+            rgba(255, 250, 205, 1),
+            rgba(127, 255, 0, 1)
+    );
+    width: 100%;
+    padding-bottom: 30px;
+    min-height: 60rem;
+}
+
+.background_bm {
+    background: linear-gradient(
+            to bottom,
+            rgba(238, 174, 238, 1),
+            rgba(238, 0, 238, 1)
+    );
+    width: 100%;
+    padding-bottom: 30px;
+    min-height: 60rem;
+}
+
+.background_tm {
+    background: linear-gradient(
+            to bottom,
+            rgba(0, 191, 255, 1),
+            rgba(72, 118, 255, 1)
+    );
+    width: 100%;
+    padding-bottom: 30px;
+    min-height: 60rem;
+}
+
+.search-input {
+    width: 400px; /* Thay đổi kích thước theo mong muốn */
+}
+
+.date_time{
+    display: flex;
+    margin: 1rem;
+}
+
+.date_time div{
+    margin: 5px;
+}
