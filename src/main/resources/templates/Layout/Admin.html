@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" th:fragment="layout">
-<head th:replace="Layout/Fragment/head :: head"></head>
+<head th:replace="~{Layout/Fragment/head :: head}"></head>
 
 
 <body>
-<div th:replace="Layout/Fragment/offcanvas :: offcanvas">
+<div th:fragment="content"></div>
+<div th:replace="~{Layout/Fragment/offcanvas :: offcanvas}">
 
 </div>
-<div th:replace="Layout/Fragment/script :: script">
+<div th:replace="~{Layout/Fragment/script :: script}">
 
 </div>
 </body>
