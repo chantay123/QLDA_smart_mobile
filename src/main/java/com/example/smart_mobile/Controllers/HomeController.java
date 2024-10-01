@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class HomeController {
-    @GetMapping
-    public String home() {
-        return "cart/cart";
-    }
+
+
+    @GetMapping("/shop")
+    public String shop() { return "Shop/shop"; }
 }
