@@ -23,7 +23,6 @@ public class AdminnistratorController {
         return"admin/usermanagement";
     }
 
-
     @GetMapping("")
     public String dashboard(){
         return"admin/dashboard";

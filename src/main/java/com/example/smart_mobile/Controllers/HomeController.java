@@ -30,6 +30,7 @@ public class HomeController {
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private ProductService productService;
     @Autowired
