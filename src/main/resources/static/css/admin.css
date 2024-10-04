@@ -87,3 +87,37 @@
 .date_time div{
     margin: 5px;
 }
+
+
+/* Trong tệp CSS của bạn */
+.status{
+    font-weight: bold;
+}
+
+.dot-danger {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: red;
+    margin-right: 5px;
+}
+
+.dot-success {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: lightgreen;
+    margin-right: 5px;
+}
+
+.lock{
+    color: Red;
+    font-weight: bold;
+}
+
+.active{
+    color: lightGreen;
+    font-weight: bold;
+}
