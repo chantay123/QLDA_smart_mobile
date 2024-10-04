@@ -24,6 +24,11 @@ public class CustomUserDetails implements UserDetails {
                 .collect(Collectors.toList());
     }
 
+
+    public boolean getIsDelete() {
+        return user.getIsDelete();
+    }
+
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -58,12 +63,12 @@ public class CustomUserDetails implements UserDetails {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        User newuser = (User) o;
-        return user.getId() != null && Objects.equals(user.getId(), newuser.getId());
+        CustomUserDetails that = (CustomUserDetails) o;
+        return user.getId() != null && Objects.equals(user.getId(), that.user.getId());
     }
 
     @Override
     public int hashCode() {
-        return getClass().hashCode();
+        return Objects.hash(user.getId()); // Sử dụng id để tạo hash code
     }
 }

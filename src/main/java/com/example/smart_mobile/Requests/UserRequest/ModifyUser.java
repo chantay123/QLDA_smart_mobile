@@ -1,6 +1,5 @@
 package com.example.smart_mobile.Requests.UserRequest;
 
-
 import com.example.smart_mobile.Models.Role;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -17,14 +16,14 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-public class CreateUser {
+public class ModifyUser {
+    private Long id;
     private String username;
     private String password;
     private String phoneNumber;
     private String email;
     private Date birth;
     private String address;
-    private Boolean isDelete;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

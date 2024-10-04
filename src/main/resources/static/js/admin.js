@@ -56,4 +56,3 @@ flatpickr("#datepicker_end", {
     maxDate: "today",
 })
 
-// js đổi trang

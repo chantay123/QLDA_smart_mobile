@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Modify User</title>
+
+</head>
+<div th:replace="~{Layout/Admin :: layout}">
+
+</div>
+<body>
+    <div class="container mt-5">
+        <a class="btn btn-secondary mb-4" th:href="@{/admin/viewuser/{id}(id=${user.id})}"><i class="bi bi-arrow-left-circle"></i> Back to View</a>
+        <h2 class="mb-4">Information of <span th:text="${user.username}"></span></h2>
+        <form th:action="@{/admin/userupdate}" method="post" th:object="${user}">
+            <div th:if="${error}" style="display: none" role="alert" id="errorModifyUser">
+                <span th:text="${error}"></span>
+            </div>
+            <!-- Hidden ID Field -->
+            <input type="hidden" id="id" name="id" th:field="*{id}" readonly>
+
+            <!-- Username -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" th:field="*{username}"
+                       required>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" name="phoneNumber"
+                       th:field="*{phoneNumber}" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" th:field="*{email}" required>
+            </div>
+
+            <!-- Birth Date -->
+            <div class="mb-3">
+                <label for="birth" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" id="birth" name="birth"
+                       th:value="${#dates.format(birth, 'yyyy-MM-dd')}"
+                       th:field="*{birth}"
+                       required>
+            </div>
+
+            <!-- Address -->
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" th:field="*{address}">
+            </div>
+
+            <!-- Roles -->
+            <div class="form-group mb-3">
+                <label for="roles" class="form-label">Role:</label>
+                <select th:field="*{roles}" class="form-control" id="roles">
+                    <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success"> Accept </button>
+        </form>
+    </div>
+</body>
+</html>

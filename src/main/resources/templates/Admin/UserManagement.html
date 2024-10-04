@@ -8,246 +8,82 @@
 <div th:replace="~{Layout/Admin :: layout}">
 
 </div>
-<div class="container-fluid" th:fragment="content">
-    <div class="background_um">
+<div class="background_um">
+    <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-2 mb-lg-0">
-            <button class="btn btn-primary m-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+            <button class="btn btn-primary m-2" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#staticBackdrop"
                     aria-controls="staticBackdrop">
                 <i class="bi bi-list-ul"></i>
             </button>
-            <form class="d-flex m-3" role="search">
-                <input class="form-control me-2 search-input" type="search" placeholder="Username or Email"
-                       aria-label="Search">
+            <form th:action="@{/admin/user}" method="get" class="d-flex m-3" role="search" id="searchForm">
+                <input class="form-control me-2 search-input"
+                       name="search"
+                       id="search"
+                       type="search" placeholder="Username or Email"
+                       aria-label="search"
+                       th:value="${search}"
+                >
                 <button class="btn btn-warning" type="submit">Search</button>
             </form>
         </div>
+
         <div class="body_content container">
+            <form th:action="@{/admin/user}" method="get" id="filterForm">
+                <div class="d-flex">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" id="locked" name="isDelete" value="true"
+                               th:checked="${isDelete != null && isDelete == true}" onchange="submitFilterForm()">
+                        <label class="form-check-label" for="locked">
+                            Locked Accounts
+                        </label>
+                    </div>
+                    <div class="form-check" style="margin-left: 20px;">
+                        <input class="form-check-input" type="radio" id="unlocked" name="isDelete" value="false"
+                               th:checked="${isDelete != null && isDelete == false}" onchange="submitFilterForm()">
+                        <label class="form-check-label" for="unlocked">
+                            Active Accounts
+                        </label>
+                    </div>
+                    <div class="form-check" style="margin-left: 20px;">
+                        <input class="form-check-input" type="radio" id="all" name="isDelete" value=""
+                               th:checked="${isDelete == null}" onchange="submitFilterForm()">
+                        <label class="form-check-label" for="all">
+                            All Accounts
+                        </label>
+                    </div>
+                </div>
+            </form>
+
             <div class="row">
                 <div class="mb-4 mb-lg-0">
                     <div class="card">
-                        <h5 class="card-header bg-success-subtle"><i class="bi bi-person-bounding-box"></i> User Management</h5>
+                        <div class="card-header bg-success-subtle d-flex justify-content-between">
+                            <h5>
+                                <i class="bi bi-person-bounding-box"></i> User Management
+                            </h5>
+                            <a class="btn btn-info" href="/admin/createuser"> Create new User</a>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive text-center">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
+                                        <th scope="col">STT</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Phone number</th>
                                         <th scope="col"></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>john_doe</td>
-                                        <td>john@example.com</td>
-                                        <td>123-456-7890</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>jane_smith</td>
-                                        <td>jane@example.com</td>
-                                        <td>123-555-7890</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>michael_lee</td>
-                                        <td>michael@example.com</td>
-                                        <td>555-234-7890</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>sarah_jones</td>
-                                        <td>sarah@example.com</td>
-                                        <td>321-456-7890</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>alex_turner</td>
-                                        <td>alex@example.com</td>
-                                        <td>111-222-3333</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>emma_wilson</td>
-                                        <td>emma@example.com</td>
-                                        <td>444-555-6666</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>oliver_white</td>
-                                        <td>oliver@example.com</td>
-                                        <td>222-333-4444</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>amelia_hill</td>
-                                        <td>amelia@example.com</td>
-                                        <td>555-666-7777</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>jack_brown</td>
-                                        <td>jack@example.com</td>
-                                        <td>888-999-1111</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>lucy_adams</td>
-                                        <td>lucy@example.com</td>
-                                        <td>777-888-9999</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>chris_evans</td>
-                                        <td>chris@example.com</td>
-                                        <td>222-777-3333</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>rachel_green</td>
-                                        <td>rachel@example.com</td>
-                                        <td>333-444-5555</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>tom_holland</td>
-                                        <td>tom@example.com</td>
-                                        <td>999-888-7777</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>14</td>
-                                        <td>lily_evans</td>
-                                        <td>lily@example.com</td>
-                                        <td>123-234-3456</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>15</td>
-                                        <td>jack_sparrow</td>
-                                        <td>jack.s@example.com</td>
-                                        <td>456-567-6789</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>16</td>
-                                        <td>natasha_romanoff</td>
-                                        <td>natasha@example.com</td>
-                                        <td>234-345-4567</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>17</td>
-                                        <td>steve_rogers</td>
-                                        <td>steve@example.com</td>
-                                        <td>789-890-1234</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>18</td>
-                                        <td>wanda_maximoff</td>
-                                        <td>wanda@example.com</td>
-                                        <td>999-111-2222</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>19</td>
-                                        <td>peter_parker</td>
-                                        <td>peter@example.com</td>
-                                        <td>456-789-1234</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>20</td>
-                                        <td>tony_stark</td>
-                                        <td>tony@example.com</td>
-                                        <td>555-444-3333</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>21</td>
-                                        <td>clark_kent</td>
-                                        <td>clark@example.com</td>
-                                        <td>999-555-4444</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>22</td>
-                                        <td>bruce_wayne</td>
-                                        <td>bruce@example.com</td>
-                                        <td>222-333-1234</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>23</td>
-                                        <td>diana_prince</td>
-                                        <td>diana@example.com</td>
-                                        <td>111-222-5678</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>24</td>
-                                        <td>barry_allen</td>
-                                        <td>barry@example.com</td>
-                                        <td>333-555-7890</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>25</td>
-                                        <td>arthur_curry</td>
-                                        <td>arthur@example.com</td>
-                                        <td>444-333-1234</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>26</td>
-                                        <td>clint_barton</td>
-                                        <td>clint@example.com</td>
-                                        <td>567-789-1234</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>27</td>
-                                        <td>carol_danvers</td>
-                                        <td>carol@example.com</td>
-                                        <td>678-890-3456</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>28</td>
-                                        <td>t'challa</td>
-                                        <td>tchalla@example.com</td>
-                                        <td>123-345-4567</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>29</td>
-                                        <td>scott_lang</td>
-                                        <td>scott@example.com</td>
-                                        <td>234-567-6789</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>30</td>
-                                        <td>sam_wilson</td>
-                                        <td>sam@example.com</td>
-                                        <td>555-666-7777</td>
-                                        <td><a href="#" class="btn btn-sm btn-primary">View</a></td>
+                                    <tbody id="userTableBody">
+                                    <tr th:each="user : ${users}">
+                                        <td th:text="${userStat.index + 1}">1</td>
+                                        <td th:text="${user.username}">john_doe</td>
+                                        <td th:text="${user.email}">john@example.com</td>
+                                        <td th:text="${user.phoneNumber}">123-456-7890</td>
+                                        <td><a th:href="@{/admin/viewuser/{id}(id=${user.id})}"
+                                               class="btn btn-sm btn-primary">View</a></td>
                                     </tr>
                                     </tbody>
                                 </table>
