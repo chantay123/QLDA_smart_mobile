@@ -1,4 +1,4 @@
-package com.example.smart_mobile.Entities;
+package com.example.smart_mobile.Models;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
@@ -25,6 +25,7 @@ public class Product {
     private String name;
 
     @Column(name = "description", nullable = true)
+    @Lob
     private String description;
 
     @NotBlank(message = "Image URL is required")

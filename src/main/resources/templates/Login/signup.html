@@ -1,111 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="/css/signup.css" />
-        <link
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <link rel="stylesheet" href="/css/signup.css" />
+    <link
             href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
             rel="stylesheet"
-        />
-        <link
+    />
+    <link
             rel="stylesheet"
             href="https://www.w3schools.com/w3css/4/w3.css"
-        />
-        <link
+    />
+    <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
             href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             rel="stylesheet"
-        />
-        <link rel="stylesheet" href="/css/animation_login.css" />
-    </head>
-    <body>
-        <div class="limiter">
-            <div class="background">
-                <div class="login">
-                    <div class="img-login">
-                        <img
-                            src="/image/image.png"
-                            alt="login-user"
-                            class="image"
-                        />
-                    </div>
+    />
+    <link rel="stylesheet" href="/css/animation_login.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
 
-                    <div class="login-space">
-                        <form action="" class="form-login">
-                            <span class="login-title">Member Login</span>
-                            <div class="login-input">
-                                <input
-                                    type="text"
-                                    class="input"
-                                    placeholder="Your name"
-                                />
-                                <span class="focus-input"></span>
-                                <span class="input-icon"
-                                    ><i class="fa fa-user"></i
-                                ></span>
-                            </div>
-                            <div class="login-input">
-                                <input
-                                    type="text"
-                                    class="input"
-                                    placeholder="Email"
-                                />
-                                <span class="focus-input"></span>
-                                <span class="input-icon"
-                                    ><i class="fa fa-envelope"></i
-                                ></span>
-                            </div>
-                            <div class="login-input">
-                                <input
-                                    type="password"
-                                    class="input"
-                                    placeholder="Password"
-                                />
-                                <span class="focus-input"></span>
-                                <span class="input-icon"
-                                    ><i class="fa fa-lock"></i
-                                ></span>
-                            </div>
-                            <div class="login-input">
-                                <input
-                                    type="password"
-                                    class="input"
-                                    placeholder="Confirm password"
-                                />
-                                <span class="focus-input"></span>
-                                <span class="input-icon"
-                                    ><i class="fa fa-lock"></i
-                                ></span>
-                            </div>
-                            <div class="login-input">
-                                <input
-                                    type="text"
-                                    class="input"
-                                    placeholder="Phone"
-                                />
-                                <span class="focus-input"></span>
-                                <span class="input-icon"
-                                    ><i class="fa fa-phone"></i
-                                ></span>
-                            </div>
-                            <div class="button-space">
-                                <button class="button">SIGN IN</button>
-                            </div>
-                        </form>
+<div class="limiter">
+    <div class="background">
+        <div class="login">
+            <div class="img-login">
+                <img
+                        src="/image/image.png"
+                        alt="login-user"
+                        class="image"
+                />
+            </div>
+
+            <div class="login-space">
+                <form id="registerForm" class="form-login" th:action="@{/register}" method="post">
+                    <div th:if="${errors}" class="alert alert-danger justify-content-center" role="alert">
+                        <ul>
+                            <li th:each="error : ${errors}" th:text="${error}" class="text-danger text-start"></li>
+                        </ul>
                     </div>
-                </div>
+                    <div th:if="${error}" style="display: none" role="alert" id="errorDiv">
+                        <span th:text="${error}"></span>
+                    </div>
+                    <span class="login-title">Register member</span>
+                    <div class="login-input">
+                        <input
+                                type="text"
+                                class="input"
+                                placeholder="Username"
+                                id="username"
+                                name="username"
+                                required
+                        />
+                        <span class="focus-input"></span>
+                        <span class="input-icon"
+                        ><i class="fa fa-user"></i
+                        ></span>
+                    </div>
+                    <div class="login-input">
+                        <input
+                                type="text"
+                                class="input"
+                                placeholder="Email"
+                                id="email"
+                                name="email"
+                                required
+                        />
+                        <span class="focus-input"></span>
+                        <span class="input-icon"
+                        ><i class="fa fa-envelope"></i
+                        ></span>
+                    </div>
+                    <div class="login-input">
+                        <input
+                                type="password"
+                                class="input"
+                                placeholder="Password"
+                                id="password"
+                                name="password"
+                                required
+                        />
+                        <span class="focus-input"></span>
+                        <span class="input-icon"
+                        ><i class="fa fa-lock"></i
+                        ></span>
+                    </div>
+                    <div class="login-input">
+                        <input
+                                type="password"
+                                class="input"
+                                placeholder="Confirm password"
+                                id="confirm_password"
+                                name="confirm_password"
+                        />
+                        <span class="focus-input"></span>
+                        <span class="input-icon"
+                        ><i class="fa fa-lock"></i
+                        ></span>
+                    </div>
+                    <div class="login-input">
+                        <input
+                                type="text"
+                                class="input"
+                                placeholder="Phone"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                required
+                        />
+                        <span class="focus-input"></span>
+                        <span class="input-icon"
+                        ><i class="fa fa-phone"></i
+                        ></span>
+                    </div>
+                    <div class="button-space">
+                        <button type="submit" class="button">REGISTER</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <script src="/js/index.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
-    </body>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+<script src="/js/index.js"></script>
+</body>
 </html>

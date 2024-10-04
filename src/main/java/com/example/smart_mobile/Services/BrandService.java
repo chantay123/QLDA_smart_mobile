@@ -1,6 +1,6 @@
 package com.example.smart_mobile.Services;
 
-import com.example.smart_mobile.Entities.Brand;
+import com.example.smart_mobile.Models.Brand;
 import com.example.smart_mobile.Repositories.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

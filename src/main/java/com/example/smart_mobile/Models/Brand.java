@@ -1,4 +1,4 @@
-package com.example.smart_mobile.Entities;
+package com.example.smart_mobile.Models;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,7 +22,8 @@ public class Brand {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-    @Column(name = "description", nullable = true)
+    @Column(name = "description", columnDefinition = "TEXT", nullable = true)
+    @Lob
     private String description;
 
 }

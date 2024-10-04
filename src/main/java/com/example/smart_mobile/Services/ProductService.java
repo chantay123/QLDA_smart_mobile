@@ -1,8 +1,8 @@
 package com.example.smart_mobile.Services;
 
-import com.example.smart_mobile.Entities.Product;
+import com.example.smart_mobile.Models.Product;
 import com.example.smart_mobile.Repositories.ProductRepository;
-import com.example.smart_mobile.Entities.Brand;
+import com.example.smart_mobile.Models.Brand;
 import com.example.smart_mobile.Repositories.BrandRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,5 +61,9 @@ public class ProductService {
 
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
+    }
+
+    public List<Product> getTopThreeIPhones() {
+        return productRepository.findTop3ByNameContaining("iPhone");
     }
 }
