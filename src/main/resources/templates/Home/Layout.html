@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header-Footer</title>
+    <link th:fragment="custom-css" rel="stylesheet"
+          th:href="@{/css/HomepageStyle.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+<header th:fragment="header">
+    <section class="top_navigation">
+        <div class="container">
+            <div class="space_between_block">
+                <a href=""><img th:src="@{/image/Frame 1.svg}" alt="Frame 1" /></a>
+                <form action="" class="search_bar_wrapper">
+                    <input class="search_bar" maxlength="256" name="query" placeholder="What are you looking for?" type="search"
+                           id="search-2" required="" />
+                    <input type="submit" class="search_button" value="search" />
+                </form>
+                <div class="layout_login_cart">
+                    <div class="cart_button">
+                        <a href="" class="cart_a">
+                            <div class="relative-block">
+                                <a sec:authorize="isAuthenticated()" class="nav-link" href="/cart">
+                                    <img th:src="@{/image/icon/65f127a6a12d5be1d7e91306_bag icon.svg}" alt="" />
+                                </a>
+                                <div class="cart_quantity" th:text="${#lists.size(cartItems)}">0</div>
+                            </div>
+                        </a>
+                        <div>
+                            <div class="text_your_cart">Your Cart</div>
+                            <div class="text_your_number">$ 360.00 USD</div>
+                        </div>
+                        <div>
+                            <a sec:authorize="!isAuthenticated()" class="nav-link buton_login" href="/login">Login</a>
+                            <a sec:authorize="isAuthenticated()" href="/logout" type="button" class="btn btn-danger">Log out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="navbar">
+            <nav class="container">
+                <div class="navbar-wrapper">
+                    <div>
+                        <div class="Categories">
+                            <img class="image_all_categories _20px-svg"
+                                 src="https://cdn.prod.website-files.com/65f0219f664a58453bb579a5/65f127a67ecf746a9314d033_Group.webp"
+                                 loading="lazy" alt="">
+                            <div class="text_categories">Browse All Categories</div>
+                        </div>
+                    </div>
+                    <div class="_1px-width-divider"></div>
+                    <nav class="nav-menu-wrapper">
+                        <ul class="nav-menu" style="list-style: none; padding: 0; margin: 0;">
+                            <li class="nav_list"><a href="/" class="nav_link ">Home</a></li>
+                            <li class="nav_list"><a href="/" class="nav_link">About Us</a></li>
+                            <li class="nav_list"><a href="/" class="nav_link">Pages</a></li>
+                            <li class="nav_list"><a href="/" class="nav_link">Shop</a></li>
+                            <li class="nav_list"><a href="/" class="nav_link">Blog</a></li>
+                            <li class="nav_list"><a href="/" class="nav_link">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="_1px-width-divider"></div>
+                    <div class="phone_and_email_navbar">
+                        <div class="horizontal-block-with-7px-gap">
+                            <img class="_16px-svg"
+                                 src="https://cdn.prod.website-files.com/65f0219f664a58453bb579a5/65f127a7248f0423a4a5df65_phone-call%202.webp"
+                                 alt="">
+                            <div class="paragraph-400-semibold"> Call: 0865479329</div>
+                        </div>
+                        <div class="horizontal-block-with-7px-gap"></div>
+                        <img class="_16px-svg"
+                             src="https://cdn.prod.website-files.com/65f0219f664a58453bb579a5/65f127a7b51c3fd39e167223_Layer_1.webp"
+                             alt="">
+                        <div class="paragraph-400-semibold">Email: phanchantay@gmail.com</div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+</header>
+<div th:fragment="content">Content</div>
+<footer th:fragment="footer">
+    <div class="main-footer">
+        <div class="container">
+            <div class="footer-wrapper">
+                <div class="footer-block first-block"><a href="#" class="navbar-logo-wrapper w-nav-brand">
+                    <img th:src="@{/image/Frame 1.svg}" loading="lazy" width="60%" alt="" class="site-logo"></a>
+                    <p class="footer-paragraph">At Ecommerce TNC, we curate diverse, quality products ensuring a stress-free
+                        shopping experience. Our dedicated team provides prompt support. Join our community.</p>
+
+                </div>
+                <div class="footer-block">
+                    <div class="footer-title">Useful Links</div>
+                    <div class="list-block"><a href="/home" aria-current="page" class="footer-link w-inline-block w--current">
+
+                        <div>Home One</div>
+                    </a><a href="/home-2" class="footer-link w-inline-block">
+
+                        <div>Home Two</div>
+                    </a><a href="/home-3" class="footer-link w-inline-block">
+
+                        <div>Home Three</div>
+                    </a><a href="/about" class="footer-link w-inline-block">
+
+                        <div>About</div>
+                    </a><a href="/contact" class="footer-link w-inline-block">
+
+                        <div>Contact</div>
+                    </a></div>
+                </div>
+                <div class="footer-block">
+                    <div class="footer-title">Quick Links</div>
+                    <div class="list-block"><a href="/about" class="footer-link w-inline-block">
+                        <div>About Us</div>
+                    </a><a href="/faq" class="footer-link w-inline-block">
+                        <div>FAQ</div>
+                    </a><a href="/shop" class="footer-link w-inline-block">
+                        <div>Shop</div>
+                    </a><a href="/log-in" class="footer-link w-inline-block">
+                        <div>Log-In</div>
+                    </a><a href="/utility/license" class="footer-link w-inline-block">
+                        <div>Licensing</div>
+                    </a></div>
+                </div>
+                <div class="footer-block subscribe-block">
+                    <div class="footer-title">Contact Address</div>
+                    <p class="footer-paragraph">4517 Washington Ave. Manchester,<br>Kentucky 39495</p>
+                    <div class="w-layout-vflex _10px-gap">
+                        <div class="footer-title">Contact Address</div>
+                        <div class="horizontal-block-10px-gap _16px-svg"><img
+                                src="https://cdn.prod.website-files.com/65f0219f664a58453bb579a5/65f13c13f60edff8333303ba_phone-call%201.svg"
+                                loading="lazy" alt="">
+                            <div class="paragraph-300">(123) 555-0119</div>
+                        </div>
+                        <div class="horizontal-block-10px-gap _16px-svg"><img
+                                src="https://cdn.prod.website-files.com/65f0219f664a58453bb579a5/65f13c1371255e3999942adf_email%201.svg"
+                                loading="lazy" alt="">
+                            <div class="paragraph-300">(123) 555-0119</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container middle-allign">
+            <div class="footer-copyright">Copyright © 2024 Ecommerce TNC | &nbsp;<a style="text-decoration: none;"
+                                                                                    href="https://webflow.com/templates/designers/themencode" target="_blank" class="footer-copyright">Designed
+                by ThemeNcode LLC</a> | &nbsp;<a style="text-decoration: none;" href="https://webflow.com/" target="_blank"
+                                                 class="footer-copyright">Powered by Webflow</a></div>
+        </div>
+    </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+</footer>
+</body>
+</html>

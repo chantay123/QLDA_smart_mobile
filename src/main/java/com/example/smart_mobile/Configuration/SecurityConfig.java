@@ -30,8 +30,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/css/**", "/js/**", "/image/**").permitAll()  // đăng ký quyền truy cập cho các file trong project
-                        .requestMatchers("/signup", "/register").permitAll()  // Cho phép truy cập không cần đăng nhập
-                        .requestMatchers("/admin/**").hasAnyAuthority("Admin")
+                        .requestMatchers("/signup", "/register" ).permitAll()  // Cho phép truy cập không cần đăng nhập
+                        .requestMatchers("/admin/**", "/products/**").hasAnyAuthority("Admin")
+                        .requestMatchers("/cart/**", "/").hasAnyAuthority("Customer")
                         .anyRequest().authenticated()   // Các URL khác cần phải đăng nhập
                 )
                 .formLogin((form) -> form
@@ -39,7 +40,8 @@ public class SecurityConfig {
                         .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/")
                         .failureUrl("/login?error") // Trang đăng nhập thất bại.
-                        .permitAll()           // Cho phép tất cả mọi người truy cập trang login
+                        .permitAll()
+                        // Cho phép tất cả mọi người truy cập trang login
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")

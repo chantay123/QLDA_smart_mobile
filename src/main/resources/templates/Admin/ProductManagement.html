@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Product Management</title>
@@ -25,264 +25,42 @@
             <div class="row">
                 <div class="mb-4 mb-lg-0">
                     <div class="card">
+                        <div th:if="${successMessage}" class="alert alert-success">
+                            <span th:text="${successMessage}"></span>
+                        </div>
                         <h5 class="card-header bg-success-subtle"><i class="bi bi-phone"></i> Product Management
                         </h5>
+                        <a href="/products/add" class="btn btn-primary mb-3">Thêm Sản Phẩm</a>
                         <div class="card-body">
                             <div class="table-responsive text-center">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Brand</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col"></th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Image</th>
+                                        <th>Price</th>
+                                        <th>Stock Quantity</th>
+                                        <th>Brand</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>iPhone 14</td>
-                                        <td>100</td>
-                                        <td>Apple</td>
-                                        <td>$999</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Galaxy S21</td>
-                                        <td>200</td>
-                                        <td>Samsung</td>
-                                        <td>$799</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Pixel 6</td>
-                                        <td>150</td>
-                                        <td>Google</td>
-                                        <td>$599</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Xiaomi Mi 11</td>
-                                        <td>120</td>
-                                        <td>Xiaomi</td>
-                                        <td>$749</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>OnePlus 9</td>
-                                        <td>80</td>
-                                        <td>OnePlus</td>
-                                        <td>$729</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>Oppo Reno 6</td>
-                                        <td>90</td>
-                                        <td>Oppo</td>
-                                        <td>$499</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>Huawei P40</td>
-                                        <td>110</td>
-                                        <td>Huawei</td>
-                                        <td>$899</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>Motorola Edge</td>
-                                        <td>130</td>
-                                        <td>Motorola</td>
-                                        <td>$699</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>Realme GT</td>
-                                        <td>140</td>
-                                        <td>Realme</td>
-                                        <td>$599</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>Nokia 8.3</td>
-                                        <td>70</td>
-                                        <td>Nokia</td>
-                                        <td>$699</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>Vivo X60</td>
-                                        <td>60</td>
-                                        <td>Vivo</td>
-                                        <td>$799</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>12</td>
-                                        <td>Sony Xperia 1</td>
-                                        <td>50</td>
-                                        <td>Sony</td>
-                                        <td>$999</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>13</td>
-                                        <td>Google Pixel 5a</td>
-                                        <td>150</td>
-                                        <td>Google</td>
-                                        <td>$449</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>14</td>
-                                        <td>LG Wing</td>
-                                        <td>40</td>
-                                        <td>LG</td>
-                                        <td>$999</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>15</td>
-                                        <td>Asus ROG Phone 5</td>
-                                        <td>30</td>
-                                        <td>Asus</td>
-                                        <td>$999</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>16</td>
-                                        <td>Honor 50</td>
-                                        <td>90</td>
-                                        <td>Honor</td>
-                                        <td>$549</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>17</td>
-                                        <td>Infinix Zero 8</td>
-                                        <td>80</td>
-                                        <td>Infinix</td>
-                                        <td>$299</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>18</td>
-                                        <td>Tecno Camon 17</td>
-                                        <td>100</td>
-                                        <td>Tecno</td>
-                                        <td>$249</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>19</td>
-                                        <td>ZTE Axon 20</td>
-                                        <td>60</td>
-                                        <td>ZTE</td>
-                                        <td>$399</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>20</td>
-                                        <td>Lenovo Legion Phone Duel 2</td>
-                                        <td>50</td>
-                                        <td>Lenovo</td>
-                                        <td>$999</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>21</td>
-                                        <td>Realme Narzo 30</td>
-                                        <td>70</td>
-                                        <td>Realme</td>
-                                        <td>$199</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>22</td>
-                                        <td>Oppo A54</td>
-                                        <td>90</td>
-                                        <td>Oppo</td>
-                                        <td>$199</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>23</td>
-                                        <td>Samsung Galaxy A52</td>
-                                        <td>130</td>
-                                        <td>Samsung</td>
-                                        <td>$399</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>24</td>
-                                        <td>Apple iPhone SE</td>
-                                        <td>80</td>
-                                        <td>Apple</td>
-                                        <td>$399</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>25</td>
-                                        <td>Vivo Y20</td>
-                                        <td>110</td>
-                                        <td>Vivo</td>
-                                        <td>$199</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>26</td>
-                                        <td>Honor Play 5</td>
-                                        <td>50</td>
-                                        <td>Honor</td>
-                                        <td>$299</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>27</td>
-                                        <td>Google Pixel 4a</td>
-                                        <td>60</td>
-                                        <td>Google</td>
-                                        <td>$349</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>28</td>
-                                        <td>Samsung Galaxy Z Fold3</td>
-                                        <td>40</td>
-                                        <td>Samsung</td>
-                                        <td>$1799</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>29</td>
-                                        <td>iPhone 13 Mini</td>
-                                        <td>70</td>
-                                        <td>Apple</td>
-                                        <td>$699</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>30</td>
-                                        <td>Oppo Find X3</td>
-                                        <td>50</td>
-                                        <td>Oppo</td>
-                                        <td>$1149</td>
-                                        <td><button class="btn btn-primary">Edit</button></td>
+                                    <!-- Thymeleaf code to iterate over products -->
+                                    <tr th:each="product : ${products}">
+                                        <td th:text="${product.id}"></td>
+                                        <td th:text="${product.name}"></td>
+                                        <td>
+                                            <img th:src="@{${product.imageUrl}}" alt="Product Image" style="width: 100px;">
+                                        </td>
+                                        <td th:text="${product.price}"></td>
+                                        <td th:text="${product.stockQuantity}"></td>
+                                        <td th:text="${product.brand.name}"></td>
+                                        <td>
+                                            <a th:href="@{/products/edit/{id}(id=${product.id})}" class="btn btn-warning">Chỉnh Sửa</a>
+                                            <a th:href="@{/products/delete/{id}(id=${product.id})}" class="btn btn-danger">Xóa</a>
+                                        </td>
                                     </tr>
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
@@ -322,5 +100,6 @@
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

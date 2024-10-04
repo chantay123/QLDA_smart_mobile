@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-<div class="container" th:fragment="content">
+<div class="container">
     <h2 class="mt-5">Create New User</h2>
     <form th:action="@{/admin/createUser}" method="post" th:object="${user}">
         <div class="form-group">

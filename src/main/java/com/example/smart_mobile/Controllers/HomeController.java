@@ -1,8 +1,15 @@
 package com.example.smart_mobile.Controllers;
 
+import com.example.smart_mobile.Models.Brand;
+import com.example.smart_mobile.Models.CartItems;
+import com.example.smart_mobile.Models.User;
 import com.example.smart_mobile.Repositories.UserRepository;
 import com.example.smart_mobile.Requests.UserRequest.CreateUser;
+import com.example.smart_mobile.Services.BrandService;
+import com.example.smart_mobile.Services.CartService;
+import com.example.smart_mobile.Services.ProductService;
 import com.example.smart_mobile.Services.UserService;
+import com.example.smart_mobile.Models.Product;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +17,12 @@ import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 @RequestMapping()
 public class HomeController {
@@ -22,9 +31,25 @@ public class HomeController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private CartService cartService;
+    @Autowired
+    private BrandService brandService;
+
     @GetMapping("/")
-    public String home() {
-        return "cart/cart";
+    public String home(@NotNull Model model) {
+        List<Product> products = productService.getAllProducts();
+        List<Product> iPhones = productService.getTopThreeIPhones();
+        Optional<User> user = userService.getUserAuthentication();
+        List<CartItems> items = cartService.getItemsInCart(user.get().getId());
+        List<Brand> brands = brandService.getAllBrands();
+        model.addAttribute("cartItems", items);
+        model.addAttribute("iphones", iPhones);
+        model.addAttribute("products", products);
+        model.addAttribute("brands", brands);
+        return "home/homepage";
     }
 
     @GetMapping("/login")

@@ -23,11 +23,6 @@ public class AdminnistratorController {
         return"admin/usermanagement";
     }
 
-    @GetMapping("/product")
-    public String productmanagement(){
-        return"admin/productmanagement";
-    }
-
     @GetMapping("")
     public String dashboard(){
         return"admin/dashboard";
