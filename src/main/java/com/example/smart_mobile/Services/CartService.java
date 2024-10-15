@@ -29,11 +29,11 @@ public class CartService {
     private ProductRepository productRepository;
 
     @Autowired
+    private OrderService orderService;
+
+    @Autowired
     private UserRepository userRepository;
 
-    /**
-     * Thêm sản phẩm vào giỏ hàng với số lượng
-     */
     public Cart addToCart(Long userId, Long productId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
@@ -79,9 +79,6 @@ public class CartService {
         return cart;
     }
 
-    /**
-     * Xóa sản phẩm khỏi giỏ hàng
-     */
     @Transactional
     public void removeFromCart(Long userId, Long productId) {
         Optional<User> userOptional = userRepository.findById(userId);
@@ -106,10 +103,6 @@ public class CartService {
         }
     }
 
-
-    /**
-     * Lấy giỏ hàng của người dùng
-     */
     public Cart getCartByUserId(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
@@ -141,8 +134,20 @@ public class CartService {
     public void clearCart(Long userId) {
         Cart cart = getCartByUserId(userId);
         if (cart != null) {
-            cartItemsRepository.deleteByCart(cart); // Xóa tất cả các mục trong giỏ hàng
+            cartItemsRepository.deleteByCart(cart);
         }
     }
 
+    public int calculateTotalPrice(Long userId) {
+        Cart cart = getCartByUserId(userId);
+        int total = 0;
+
+        if (cart != null) {
+            for (CartItems item : cart.getCartItems()) {
+                total += item.getProduct().getPrice() * item.getQuantity();
+            }
+        }
+
+        return total;
+    }
 }

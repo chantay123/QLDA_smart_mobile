@@ -2,6 +2,8 @@ package com.example.smart_mobile.Models;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.validation.constraints.*;
 
 
