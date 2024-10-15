@@ -4,6 +4,7 @@ import com.example.smart_mobile.Models.Cart;
 import com.example.smart_mobile.Models.CartItems;
 import com.example.smart_mobile.Models.User;
 import com.example.smart_mobile.Services.CartService;
+import com.example.smart_mobile.Services.OrderService;
 import com.example.smart_mobile.Services.ProductService;
 import com.example.smart_mobile.Services.UserService;
 import jakarta.validation.constraints.NotNull;
@@ -24,6 +25,8 @@ public class CartController {
     private CartService cartService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderService orderService;
 
     /**
      * Thêm sản phẩm vào giỏ hàng
@@ -35,9 +38,6 @@ public class CartController {
         return "redirect:/cart"; // Sau khi thêm vào giỏ, chuyển hướng đến trang giỏ hàng
     }
 
-    /**
-     * Xóa sản phẩm khỏi giỏ hàng
-     */
     @PostMapping("/remove/{productId}")
     public String removeProductFromCart(@PathVariable Long productId, RedirectAttributes redirectAttributes) {
         Optional<User> user = userService.getUserAuthentication();
@@ -50,25 +50,33 @@ public class CartController {
         }
         return "redirect:/cart";
     }
-    /**
-     * Hiển thị giỏ hàng
-     */
+
     @GetMapping
     public String viewCart(@NotNull Model model) {
         Optional<User> user = userService.getUserAuthentication();
         List<CartItems> items = cartService.getItemsInCart(user.get().getId());
+        int totalPrice = cartService.calculateTotalPrice(user.get().getId());
+        model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("cartItems", items);
-        return "cart/cart"; // Tên template Thymeleaf để hiển thị giỏ hàng
+        return "cart/cart";
     }
-    @PostMapping("/clear")
-    public String clearCart(RedirectAttributes redirectAttributes) {
+    @PostMapping("/check-out")
+    public String checkOut(RedirectAttributes redirectAttributes) {
         Optional<User> user = userService.getUserAuthentication();
         if (user.isPresent()) {
-            cartService.clearCart(user.get().getId());
-            redirectAttributes.addFlashAttribute("message", "Giỏ hàng đã được xóa.");
+            orderService.createOrder(user.get().getId());
+
+            try {
+                cartService.clearCart(user.get().getId());
+                redirectAttributes.addFlashAttribute("message", "Giỏ hàng đã xuất hóa đơn và được xóa.");
+            } catch (Exception e) {
+                // Thêm thông báo nếu xảy ra lỗi trong quá trình xóa giỏ hàng
+                redirectAttributes.addFlashAttribute("error", "Không thể xóa giỏ hàng: " + e.getMessage());
+            }
         } else {
             redirectAttributes.addFlashAttribute("error", "Người dùng không tồn tại.");
         }
-        return "redirect:/cart"; // Chuyển hướng về trang giỏ hàng
+        return "redirect:/cart";
     }
+
 }

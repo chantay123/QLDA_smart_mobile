@@ -22,9 +22,9 @@
                         <div th:each="iphone: ${iphones}" class="carousel-item active">
                             <div class="hero-block">
                                 <img th:src="${iphone.imageUrl}"
-                                     class="img-fluid"
-                                     th:alt="${iphone.name}"
-                                     style="height: 600px; object-fit: contain;" />
+                                     style="width: 300px"
+                                     th:alt="${iphone.name}">
+
                                 <div class="hero-contents">
                                     <h1 class="hero-title" th:text="${iphone.name}">iPhone Name</h1>
                                     <p class="hero-paragraph" th:text="${iphone.description}">iPhone Description</p>
@@ -151,7 +151,7 @@
                             <div class="product-price-block">
                                 <div class="card-price" th:text="${product.price}"></div>
                                 <div class="_2px-with-divider"></div>
-                                <div class="card-compare-prices" th:text="${product.price}">
+                                <div class="card-compare-prices" th:text="${product.price+1000001}">
                                 </div>
                             </div>
 <!--                            <div class="add-to-card">-->

@@ -43,7 +43,7 @@ public class HomeController {
         List<Product> products = productService.getAllProducts();
         List<Product> iPhones = productService.getTopThreeIPhones();
         Optional<User> user = userService.getUserAuthentication();
-        List<CartItems> items = cartService.getItemsInCart(user.get().getId());
+        List<CartItems> items = user.isPresent() ? cartService.getItemsInCart(user.get().getId()) : List.of();
         List<Brand> brands = brandService.getAllBrands();
         model.addAttribute("cartItems", items);
         model.addAttribute("iphones", iPhones);
