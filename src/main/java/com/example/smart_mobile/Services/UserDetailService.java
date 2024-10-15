@@ -29,14 +29,14 @@ public class UserDetailService implements UserDetailsService {
                     .password(userObj.getPassword())
                     .authorities(userObj.getAuthorities())
                     .accountExpired(!userObj.isAccountNonExpired())
-                    .accountLocked(!userObj.isAccountNonLocked())
+                    .accountLocked(userObj.getIsDelete())
                     .credentialsExpired(!userObj.isCredentialsNonExpired())
                     .disabled(!userObj.isEnabled())
                     .build();
         }
         else
         {
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException("Account does not exist.");
         }
     }
 }

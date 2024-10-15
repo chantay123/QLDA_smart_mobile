@@ -23,10 +23,15 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
             rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
     <link rel="stylesheet" th:href="@{/css/animation_login.css}">
 </head>
 <body>
 <div class="limiter">
+    <div th:if="${param.error}" style="display: none" role="alert" id="errorLogin">
+        <span th:text="${param.error}"></span>
+    </div>
     <div class="background">
         <div class="login">
             <div class="img-login">
@@ -88,8 +93,29 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
 <script th:src="@{/js/index.js}"></script>
+<script>
+    $(document).ready(function () {
+        function hexToString(hex) {
+            var str = '';
+            for (var i = 0; i < hex.length; i += 2) {
+                str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+            }
+            return str;
+        }
+
+
+
+        var error = $('#errorLogin span').text(); // Nhúng giá trị error từ model vào biến error trong JavaScript
+        if (error) {
+            const decodedMessage = hexToString(error);
+            toastr.options.timeout = 2000;
+            toastr.error(decodedMessage); // Hiển thị thông báo lỗi nếu có
+        }
+    });
+</script>
 </body>
 </html>

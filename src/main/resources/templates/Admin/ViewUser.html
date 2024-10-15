@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Modify User</title>
+</head>
+<div th:replace="~{Layout/Admin :: layout}">
+
+</div>
+<body>
+<div class="container mt-5">
+    <a class="btn btn-secondary mb-4" href="/admin/user">
+        <i class="bi bi-arrow-left-circle"></i>
+        Back to UserManagement
+    </a>
+    <div class="card">
+        <div class="card-header bg-primary">
+            <div class="d-flex justify-content-between">
+                <h2 class="">Information of <span th:text="${user.username}"></span></h2>
+                <div class="d-flex">
+                    <span class="status">Status Account: </span>
+                    <!-- Dot Indicator -->
+                    <span th:class="${user.isDelete ? 'dot-danger' : 'dot-success'}"></span>
+
+                    <!-- Status Text -->
+                    <span th:class="${user.isDelete ? 'lock' : 'active'}" th:text="${user.isDelete ? 'Lock' : 'Active'}"></span>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Hidden ID Field -->
+            <input type="hidden" id="id" name="id" th:field="*{user.id}">
+
+            <!-- Username -->
+            <div class="row form-group mb-3">
+                <span class="col-2 col-md-2">Username: </span>
+                <span class="col-10 col-md-10" th:text="${user.username}"></span>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="row form-group mb-3">
+                <span class="col-2 col-md-2">Phone Number: </span>
+                <span class="col-10 col-md-10" th:text="${user.phoneNumber}"></span>
+            </div>
+
+            <!-- Email -->
+            <div class="row form-group mb-3">
+                <span class="col-2 col-md-2">Email: </span>
+                <span class="col-10 col-md-10" th:text="${user.email}"></span>
+            </div>
+
+            <!-- Birth Date -->
+            <div class="row form-group mb-3">
+                <span class="col-2 col-md-2">Birthday: </span>
+                <span class="col-10 col-md-10" th:text="${user.birth}"></span>
+            </div>
+
+            <!-- Address -->
+            <div class="row form-group mb-3">
+                <span class="col-2 col-md-2">Address: </span>
+                <span class="col-10 col-md-10" th:text="${user.address}"></span>
+            </div>
+
+            <!-- Roles -->
+            <div class="form-group row mb-3">
+                <span class="col-2 col-md-2">Role:</span>
+                <span class="col-10 col-md-10" th:each="role : ${user.roles}" th:text="${role.name}"></span>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <a class="btn btn-danger mt-5" th:href="@{/admin/modifyuser/{id}(id=${user.id})}">Modify User</a>
+        <div class="float-end">
+            <form th:action="@{/admin/updateUserStatus}" method="post">
+                <input type="hidden" name="id" th:value="${user.id}"/>
+                <input type="hidden" name="isDelete" th:value="${user.isDelete ? 'false' : 'true'}"/>
+                <button type="submit" class="btn btn-secondary mt-5"
+                        th:text="${user.isDelete ? 'Unlock' : 'Lock'}"></button>
+            </form>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
