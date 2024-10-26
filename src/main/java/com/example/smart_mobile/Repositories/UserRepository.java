@@ -18,9 +18,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM User u JOIN u.roles r WHERE r.name <> 'Admin'")
     List<User> findAllExceptAdmin();
 
+    @Query("SELECT u FROM User u JOIN u.roles r WHERE r.name <> 'Admin' and u.isDelete = :isDelete")
     List<User> findByIsDelete(Boolean isDelete);
 
     @Query("SELECT u FROM User u JOIN u.roles r WHERE r.name <> 'Admin' AND (u.username LIKE %:keyword% OR u.email LIKE %:keyword%)")
     List<User> searchUsers(@Param("keyword") String keyword);
 
+    @Query("SELECT COUNT(u) FROM User u JOIN u.roles r WHERE r.name = 'customer'")
+    long countUsersWithRoleCustomer();
 }

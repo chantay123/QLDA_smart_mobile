@@ -20,10 +20,16 @@
         <div class="container">
             <div class="space_between_block">
                 <a href=""><img th:src="@{/image/Frame 1.svg}" alt="Frame 1" /></a>
-                <form action="" class="search_bar_wrapper">
-                    <input class="search_bar" maxlength="256" name="query" placeholder="What are you looking for?" type="search"
-                           id="search-2" required="" />
-                    <input type="submit" class="search_button" value="search" />
+                <form th:action="@{/shop}" method="get" class="d-flex m-3" role="search" id="searchForm">
+                    <input class="form-control me-2 search-input"
+                           name="search"
+                           id="search"
+                           type="search" placeholder="Search something dude"
+                           aria-label="search"
+                           th:value="${search}"
+                           style="width: 700px; height: 50px;"
+                    >
+                    <button class="btn" type="submit" style="background: blue; color: white;">Search</button>
                 </form>
                 <div class="layout_login_cart">
                     <div class="cart_button">
@@ -32,16 +38,19 @@
                                 <a sec:authorize="isAuthenticated()" class="nav-link" href="/cart">
                                     <img th:src="@{/image/icon/65f127a6a12d5be1d7e91306_bag icon.svg}" alt="" />
                                 </a>
-                                <div class="cart_quantity" th:text="${#lists.size(cartItems)}">0</div>
+                                <div sec:authorize="isAuthenticated()" class="cart_quantity" th:text="${#lists.size(cartItems)}">0</div>
                             </div>
                         </a>
                         <div>
-                            <div class="text_your_cart">Your Cart</div>
                             <div class="text_your_number"></div>
                         </div>
+                        <div class="bills_button">
+                            <a sec:authorize="isAuthenticated()" class="btn btn-info text-capitalize" href="/bill/your-bills">Your Bills</a>
+                        </div>
                         <div>
-                            <a sec:authorize="!isAuthenticated()" class="nav-link buton_login" href="/login">Login</a>
+                            <a sec:authorize="!isAuthenticated()" class="btn btn-dark text-white text-capitalize" href="/login">Login</a>
                             <a sec:authorize="isAuthenticated()" href="/logout" type="button" class="btn btn-danger">Log out</a>
+                            <a sec:authorize="hasAnyAuthority('Admin')" class="btn btn-secondary text-capitalize" href="/admin">Setting</a>
                         </div>
                     </div>
                 </div>
@@ -66,7 +75,7 @@
                             <li class="nav_list"><a href="/" class="nav_link ">Home</a></li>
                             <li class="nav_list"><a href="/" class="nav_link">About Us</a></li>
                             <li class="nav_list"><a href="/" class="nav_link">Pages</a></li>
-                            <li class="nav_list"><a href="/" class="nav_link">Shop</a></li>
+                            <li class="nav_list"><a href="/shop" class="nav_link">Shop</a></li>
                             <li class="nav_list"><a href="/" class="nav_link">Blog</a></li>
                             <li class="nav_list"><a href="/" class="nav_link">Contact</a></li>
                         </ul>

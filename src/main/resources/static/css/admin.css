@@ -39,7 +39,7 @@
     background-color: rgba(84, 255, 159, 0.4); /* Màu cam trong suốt */
     width: 100%;
     padding-bottom: 30px;
-    min-height: 60rem;
+    min-height: 100vh;
 }
 
 .background_pm {
@@ -50,7 +50,7 @@
     );
     width: 100%;
     padding-bottom: 30px;
-    min-height: 60rem;
+    min-height: 100vh;
 }
 
 .background_bm {
@@ -61,7 +61,7 @@
     );
     width: 100%;
     padding-bottom: 30px;
-    min-height: 60rem;
+    min-height: 100vh;
 }
 
 .background_tm {
@@ -72,7 +72,7 @@
     );
     width: 100%;
     padding-bottom: 30px;
-    min-height: 60rem;
+    min-height: 100vh;
 }
 
 .search-input {

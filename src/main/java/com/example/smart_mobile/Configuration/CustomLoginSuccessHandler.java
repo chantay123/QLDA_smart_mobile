@@ -18,7 +18,7 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
         Collection<?> authorities = authentication.getAuthorities();
 
         // Điều hướng tùy vào quyền hạn
-        if (authorities.toString().contains(Role.Admin.name())) {
+        if (authorities.toString().contains(Role.Admin.name())  || authorities.toString().contains(Role.Employee.name())) {
             response.sendRedirect("/admin");
         } else {
             response.sendRedirect("/");

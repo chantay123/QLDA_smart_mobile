@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.NumberFormat;
 
 
 @Getter
@@ -39,6 +40,7 @@ public class Product {
 
     @Min(value = 0, message = "Price must be a positive value")
     @Column(name = "price", nullable = false)
+    @NumberFormat(style = NumberFormat.Style.CURRENCY)
     private int price;
 
     @Min(value = 0, message = "Stock quantity cannot be negative")

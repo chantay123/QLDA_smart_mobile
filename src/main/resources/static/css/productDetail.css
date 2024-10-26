@@ -1,0 +1,186 @@
+body {
+    background-color: #f8f9ff !important;
+    color: #0c2d57;
+    font-family: Jost, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 140%;
+}
+.section {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    position: relative;
+}
+.product-image {
+    object-fit: contain;
+    max-width: 450px;
+    max-height: 450px;
+}
+.container._2-column-container {
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: flex;
+}
+.product-images-wrapper {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex-direction: column;
+    width: 100%;
+    display: flex;
+}
+.product-image-background {
+    border: 1px solid #e7eaee;
+    border-radius: 4px;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 600px;
+    padding: 60px 50px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+.product-title {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 40px;
+    color: #0c2d57;
+}
+.price-wrapper {
+    grid-column-gap: 18px;
+    grid-row-gap: 18px;
+    border-bottom: 1px solid #8f9eb2;
+    flex-flow: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 22px;
+    padding-bottom: 16px;
+    display: flex;
+}
+.single-product-price {
+    color: #dd3842;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 40px;
+}
+._1px-width-divider {
+    background-color: #8f9eb2;
+    width: 1px;
+    height: 21px;
+}
+.single-product-price.compare-price {
+    color: #b4becb;
+    text-decoration: line-through;
+}
+.single-product-price {
+    color: #dd3842;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 40px;
+}
+p {
+    color: #8f9eb2;
+    max-width: 750px;
+    margin-bottom: 0;
+    font-family: Open Sans, sans-serif;
+    font-size: 16px;
+    line-height: 28px;
+}
+.cart-button-wrapper {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    align-items: center;
+    margin-top: 23px;
+    margin-bottom: 28px;
+    display: flex;
+}
+.product-quantity {
+    border-style: solid;
+    border-color: #5c728e;
+    border-radius: 4px;
+    background-color: #f8f9ff;
+    width: 100%;
+    max-width: 120px;
+    height: 55px;
+    margin-bottom: 0;
+    padding-left: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+}
+.w-commerce-commerceaddtocartquantityinput:focus {
+    border-color: #3898ec;
+    outline-style: none;
+}
+.single-page-cart-button {
+    border: 1px solid #0c2d57;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #0c2d57;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-family: Open Sans, sans-serif;
+}
+.product-meta-fields-wrapper {
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+    border-top: 1px solid #8f9eb2;
+    border-bottom: 1px solid #8f9eb2;
+    flex-direction: column;
+    margin-bottom: 20px;
+    padding-top: 40px;
+    padding-bottom: 26px;
+    display: flex;
+}
+.product-meta {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+    display: flex;
+}
+.paragraph-300 {
+    color: #5c728e;
+}
+.multi-images-background {
+    border: 1px solid #e7eaee;
+    border-radius: 4px;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 150px;
+    padding: 20px;
+    display: flex;
+    overflow: hidden;
+}
+.multi-images-wrapper {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.multi-image-thumbnail {
+    aspect-ratio: 1;
+    object-fit: contain;
+    max-width: 150px;
+    padding: 20px;
+}
+.single-page-cart-button:hover {
+    color: #fff;
+    background-color: #dd3842;
+    border: #dd3842;
+}

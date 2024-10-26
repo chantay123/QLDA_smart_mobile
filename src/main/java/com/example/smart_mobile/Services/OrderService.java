@@ -26,6 +26,10 @@ public class OrderService {
     @Autowired
     private CartRepository cartRepository;
 
+    public  List<Order> findAll(){
+        return orderRepository.findAll();
+    }
+
     public List<Order> getAllOrderByIdUser(Long idUser) {
         return orderRepository.findByUserId(idUser);
     }
@@ -78,6 +82,9 @@ public class OrderService {
         }
         order.setStatus("Paid");
         return orderRepository.save(order);
+    }
+    public long getOrderCount() {
+        return orderRepository.count();
     }
     
 }

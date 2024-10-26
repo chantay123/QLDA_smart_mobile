@@ -30,7 +30,7 @@
             <ul class="list-unstyled">
                 <li class="text-muted">To: <span th:text="${user.username}"></span></li>
                 <li class="text-muted"><span th:text="${order.address}"></span></li>
-                <li class="text-muted"><i class="fas fa-phone"></i> <span th:text="${user.phone}"></span></li>
+                <li class="text-muted"><i class="fas fa-phone"></i> <span th:text="${user.phoneNumber}"></span></li>
             </ul>
         </div>
         <div class="col-xl-4">
@@ -39,7 +39,8 @@
                 <li class="text-muted"><i class="fas fa-circle"></i> <span class="fw-bold">ID:</span> <span th:text="${order.id}"></span></li>
                 <li class="text-muted"><i class="fas fa-circle"></i> <span class="fw-bold">Creation Date:</span> <span th:text="${order.orderDate}"></span></li>
                 <li class="text-muted"><i class="fas fa-circle"></i> <span class="fw-bold">Status:</span>
-                    <span th:text="${order.status}" class="badge bg-warning text-black fw-bold"></span>
+                    <span th:text="${order.status}"
+                          th:classappend="${order.status == 'Paid'} ? 'badge bg-success' : 'badge bg-warning text-black fw-bold'"></span>
                 </li>
             </ul>
         </div>
@@ -84,9 +85,13 @@
     <div class="row">
         <div class="col-xl-10">
             <p>Thank you for your purchase</p>
+            <span th:if="${order.status == 'Paid'}" class="badge bg-success text-white">Already Paid</span>
         </div>
         <div class="col-xl-2">
-            <button type="button" class="btn btn-primary text-capitalize">Pay Now</button>
+            <form th:if="${order.status != 'Paid'}"  th:action="@{/process-payment}" method="post">
+                <input type="hidden" name="id" th:value="${order.id}" />
+                <button type="submit" class="btn btn-primary text-capitalize">Pay Now</button>
+            </form>
         </div>
     </div>
 </div>
