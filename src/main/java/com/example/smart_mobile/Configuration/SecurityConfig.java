@@ -49,9 +49,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable()
                 )
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/css/**", "/js/**", "/image/**").permitAll()  // đăng ký quyền truy cập cho các file trong project
+                        .requestMatchers("/css/**", "/js/**", "/image/**", "/", "/shop/**").permitAll()  // đăng ký quyền truy cập cho các file trong project
                         .requestMatchers("/signup", "/register" ,"/login").permitAll()  // Cho phép truy cập không cần đăng nhập
-                        .requestMatchers("/admin/**", "/products/**").hasAnyAuthority("Admin")
+                        .requestMatchers("/admin/**", "/products/**").hasAnyAuthority("Admin","Employee")
                         .requestMatchers("/cart/**", "/").hasAnyAuthority("Customer")
                         .anyRequest().authenticated()   // Các URL khác cần phải đăng nhập
                 )

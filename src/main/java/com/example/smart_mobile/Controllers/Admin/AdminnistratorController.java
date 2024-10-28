@@ -1,10 +1,13 @@
 package com.example.smart_mobile.Controllers.Admin;
 
 
+import com.example.smart_mobile.Models.Order;
 import com.example.smart_mobile.Models.User;
 import com.example.smart_mobile.Repositories.UserRepository;
 import com.example.smart_mobile.Requests.UserRequest.CreateUser;
+import com.example.smart_mobile.Services.OrderService;
 import com.example.smart_mobile.Services.UserService;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,23 +23,23 @@ import java.util.List;
 public class AdminnistratorController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderService orderService;
 
     @GetMapping("/user")
     public String usermanagement(@RequestParam(name = "isDelete", required = false) Boolean isDelete,
-                                 @RequestParam(name = "search", required = false) String search,
+                                         @RequestParam(name = "search", required = false) String search,
                                  Model model){
         List<User> filteredUsers;
 
-        if (isDelete == null) {
-            filteredUsers = userService.getAllUsersExceptAdmin(); // Nếu không chọn checkbox nào, lấy tất cả tài khoản
-        } else {
-            filteredUsers = userService.getUsersBaseOnIsDelete(isDelete); // Lọc theo trạng thái khóa hoặc không khóa
-        }
-
-        if (search == null || search.isEmpty()) {
-            filteredUsers = userService.getAllUsersExceptAdmin(); // Nếu không có tìm kiếm, lấy tất cả tài khoản
-        } else {
+        if (search != null) {
             filteredUsers = userService.searchUsers(search); // Lọc theo tên người dùng hoặc email
+        } else {
+            if (isDelete != null) {
+                filteredUsers = userService.getUsersBaseOnIsDelete(isDelete); // Lọc theo trạng thái khóa hoặc không khóa
+            } else {
+                filteredUsers = userService.getAllUsersExceptAdmin(); // Nếu không chọn checkbox nào, lấy tất cả tài khoản
+            }
         }
 
         model.addAttribute("isDelete", isDelete);
@@ -46,17 +49,15 @@ public class AdminnistratorController {
     }
 
     @GetMapping("")
-    public String dashboard(){
+    public String dashboard(@NotNull Model model){
+        List<Order> orders = orderService.findAll();
+        List<User> users = userService.getAllUsersExceptAdmin();
+        long numberOfUser = userService.getUserCount();
+        long numberOfOrders = orderService.getOrderCount();
+        model.addAttribute("numberOfOrders", numberOfOrders);
+        model.addAttribute("numberOfUser", numberOfUser);
+        model.addAttribute("orders", orders);
+        model.addAttribute("users", users);
         return"admin/dashboard";
-    }
-
-    @GetMapping("/brand")
-    public String brandmanagement(){
-        return"admin/brandmanagement";
-    }
-
-    @GetMapping("/transaction")
-    public String transactionmanagement(){
-        return"admin/transactionsmanagement";
     }
 }

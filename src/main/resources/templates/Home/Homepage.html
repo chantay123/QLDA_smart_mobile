@@ -149,9 +149,9 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <div class="product-price-block">
-                                <div class="card-price" th:text="${product.price}"></div>
+                                <div class="card-price" th:text="${#numbers.formatCurrency(product.price)}"></div>
                                 <div class="_2px-with-divider"></div>
-                                <div class="card-compare-prices" th:text="${product.price+1000001}">
+                                <div class="card-compare-prices" th:text="${#numbers.formatCurrency(product.price + product.price * 90 / 100)}">
                                 </div>
                             </div>
 <!--                            <div class="add-to-card">-->

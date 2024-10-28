@@ -65,8 +65,8 @@ public class ProductController {
 
     @PostMapping("/edit/{id}")
     public String updateProduct(@PathVariable Long id, @ModelAttribute("product") Product updatedProduct, @RequestParam("brandId") Long brandId, RedirectAttributes redirectAttributes) {
-        productService.updateProduct(id, updatedProduct);
         updatedProduct.setBrand(brandService.getBrandById(brandId).orElse(null));
+        productService.updateProduct(id, updatedProduct);
         redirectAttributes.addFlashAttribute("successMessage", "Sửa sản phẩm thành công!");
         return "redirect:/products/list";
     }
